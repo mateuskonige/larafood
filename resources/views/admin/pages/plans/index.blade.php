@@ -7,5 +7,31 @@
 @stop
 
 @section('content')
-    <p>Listagem de planos nesta página.</p>
+    <div class="card">
+        <div class="card-header">
+            Olá
+        </div>
+        <div class="card-body">
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Preço</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($plans as $plan)
+                        <tr>
+                            <td>{{ $plan->name }}</td>
+                            <td>{{ $plan->price }}</td>
+                            <td width="50px">
+                                <a href="#" class="btn btn-warning">Ver</a>
+                            </td>
+                        </tr>
+                    @endforeach    
+                </tbody>
+            </table>
+        </div>
+    </div>
 @stop
