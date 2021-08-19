@@ -48,4 +48,15 @@ class PlanController extends Controller
 
         return redirect()->route('plans.index');
     }
+
+    public function search(Request $request) {
+        $filters = $request->except('_token');
+
+
+        $plans = Plan::where('name', 'LIKE', "%{$request->filter}%")
+        ->orWhere('description', 'LIKE', "%{$request->filter}%")
+        ->paginate();
+
+        return view('admin.pages.plans.index', compact('plans', 'filters'));
+    }
 }

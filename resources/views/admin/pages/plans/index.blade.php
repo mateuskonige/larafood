@@ -3,13 +3,20 @@
 @section('title', 'Planos')
 
 @section('content_header')
-    <h1>Gestão de planos <a href="{{ route('plans.create') }}" class="btn btn-primary">Add</a></h1>
+    <h1>Gestão de planos <a href="{{ route('plans.create') }}" class="btn btn-dark">Add</a></h1>
 @stop
 
 @section('content')
     <div class="card">
         <div class="card-header">
-            Tabela de planos
+            <form action="{{ route('plans.search') }}" method="POST" class="form form-inline">
+                @csrf
+            
+                <div class="form-group">
+                    <input type="text" class="form-control" name="filter" placeholder="Nome" value="{{ $filters['filter'] ?? '' }}">
+                    <button class="btn btn-dark" type="submit">Filtrar</button>
+                </div>
+            </form>
         </div>
         <div class="card-body">
             <table class="table table-condensed">
@@ -34,7 +41,11 @@
             </table>
         </div>
         <div class="card-footer">
-            {!! $plans->links() !!}
+            @if (isset($filters))
+                {!! $plans->appends($filters)->links() !!}
+            @else
+                {!! $plans->links() !!}
+            @endif
         </div>
     </div>
 @stop
