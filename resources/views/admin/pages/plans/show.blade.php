@@ -15,6 +15,15 @@
                     <li><strong>Descrição: </strong>{{ $plan->description }}</li>
                 </ul>
             </div>
+
+            <div class="card-footer">
+                <form action="{{ route('plan.destroy', $plan->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+
+                    <button type="submit" class="btn btn-danger">Deletar {{ $plan->name }}</button>
+                </form>
+            </div>
         </form>
     </div>
 @stop

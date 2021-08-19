@@ -36,4 +36,16 @@ class PlanController extends Controller
         Plan::create($data);
         return redirect()->route('plans.index');
     }
+
+    public function destroy($id) {
+        $plan = Plan::where('id', $id)->first();
+
+        if (!$plan) {
+            return redirect()->back();
+        }
+
+        $plan->delete();
+
+        return redirect()->route('plans.index');
+    }
 }
