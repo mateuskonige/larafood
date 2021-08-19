@@ -9,7 +9,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            Olá
+            Tabela de planos
         </div>
         <div class="card-body">
             <table class="table table-condensed">
@@ -32,6 +32,9 @@
                     @endforeach    
                 </tbody>
             </table>
+        </div>
+        <div class="card-footer">
+            {!! $plans->links() !!}
         </div>
     </div>
 @stop

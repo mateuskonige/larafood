@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class PlanController extends Controller
 {
     public function index() {
-        $plans = Plan::all();
+        $plans = Plan::latest()->paginate();
         return view('admin.pages.plans.index', compact('plans'));
     }
 }
