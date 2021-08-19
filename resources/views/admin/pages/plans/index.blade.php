@@ -3,7 +3,19 @@
 @section('title', 'Planos')
 
 @section('content_header')
-    <h1>Gestão de planos <a href="{{ route('plans.create') }}" class="btn btn-dark">Add</a></h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Planos</a></li>
+        </ol>
+    </nav>
+
+    <br>
+
+    <div class="d-flex justify-content-between">
+        <h1>Gestão de planos</h1>
+        <a href="{{ route('plans.create') }}" class="btn btn-dark">Adicionar</a>
+    </div>
 @stop
 
 @section('content')

@@ -51,8 +51,7 @@ class PlanController extends Controller
 
     public function search(Request $request) {
         $filters = $request->except('_token');
-
-
+        
         $plans = Plan::where('name', 'LIKE', "%{$request->filter}%")
         ->orWhere('description', 'LIKE', "%{$request->filter}%")
         ->paginate();
