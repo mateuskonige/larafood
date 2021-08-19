@@ -3,7 +3,7 @@
 @section('title', 'Planos')
 
 @section('content_header')
-    <h1>Gestão de planos</h1>
+    <h1>Gestão de planos <a href="{{ route('plans.create') }}" class="btn btn-primary">Add</a></h1>
 @stop
 
 @section('content')
