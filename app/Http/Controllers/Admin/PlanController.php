@@ -14,6 +14,16 @@ class PlanController extends Controller
         return view('admin.pages.plans.index', compact('plans'));
     }
 
+    public function show($url) {
+        $plan = Plan::where('url', $url)->first();
+
+        if (!$plan) {
+            return redirect()->back();
+        }
+
+        return view('admin.pages.plans.show', compact('plan'));
+    }
+
     public function create() {
         return view('admin.pages.plans.create');
     }

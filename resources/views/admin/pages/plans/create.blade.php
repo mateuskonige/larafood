@@ -8,10 +8,10 @@
 
 @section('content')
     <div class="card">
-        <div class="card-body">
-            <form action="{{ route('plans.store') }}" class="form" method="POST">
-                @csrf
+        <form action="{{ route('plans.store') }}" class="form" method="POST">
+            @csrf
 
+            <div class="card-body">
                 <div class="form-group">
                     <label for="name">Nome:</label>
                     <input type="text" name="name" class="form-control" placeholder="ex.: John Doe">
@@ -21,14 +21,16 @@
                     <input type="number" step="0.1" name="price" class="form-control" placeholder="ex.: 99,90">
                 </div>
                 <div class="form-group">
-                    <label for="description">Preço:</label>
+                    <label for="description">Descrição:</label>
                     <input type="text" name="description" class="form-control" placeholder="ex.: Breve descrição do plano aqui!">
                 </div>
-
+            </div>
+            
+            <div class="card-footer">
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 @stop
