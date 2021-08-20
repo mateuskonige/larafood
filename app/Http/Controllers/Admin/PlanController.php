@@ -37,6 +37,28 @@ class PlanController extends Controller
         return redirect()->route('plans.index');
     }
 
+    public function edit($url) {
+        $plan = Plan::where('url', $url)->first();
+
+        if (!$plan) {
+            return redirect()->back();
+        }
+
+        return view('admin.pages.plans.edit', compact('plan'));
+    }
+
+    public function update(Request $request, $url) {
+        $plan = Plan::where('url', $url)->first();
+
+        if (!$plan) {
+            return redirect()->back();
+        }
+
+        $plan->update($request->all());
+
+        return redirect()->route('plans.index');
+    }
+
     public function destroy($id) {
         $plan = Plan::where('id', $id)->first();
 

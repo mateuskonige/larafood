@@ -44,8 +44,9 @@
                         <tr>
                             <td>{{ $plan->name }}</td>
                             <td>R$ {{ number_format($plan->price, 2,',','.') }}</td>
-                            <td width="50px">
-                                <a href="{{ route('plan.show', $plan->url) }}" class="btn btn-warning">Ver</a>
+                            <td width="150px">
+                                <a href="{{ route('plan.show', $plan->url) }}" class="btn btn-outline-primary">Ver</a>
+                                <a href="{{ route('plan.edit', $plan->url) }}" class="btn btn-dark">Editar</a>
                             </td>
                         </tr>
                     @endforeach    
