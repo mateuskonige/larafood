@@ -14,7 +14,7 @@
 
     <div class="d-flex justify-content-between">
         <h1>Gestão de planos</h1>
-        <a href="{{ route('plans.create') }}" class="btn btn-dark">Adicionar</a>
+        <a href="{{ route('plans.create') }}" class="btn btn-dark"><i class="fa fa-plus"></i> Adicionar</a>
     </div>
 @stop
 
@@ -26,7 +26,7 @@
             
                 <div class="form-group">
                     <input type="text" class="form-control" name="filter" placeholder="Nome" value="{{ $filters['filter'] ?? '' }}">
-                    <button class="btn btn-dark" type="submit">Filtrar</button>
+                    <button class="btn btn-dark" type="submit"><i class="fa fa-filter"></i> Filtrar</button>
                 </div>
             </form>
         </div>

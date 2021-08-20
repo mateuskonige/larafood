@@ -231,7 +231,7 @@ return [
         [
             'text' => 'Planos',
             'url'  => 'admin/plans',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'fa fa-boxes',
         ],
     ],
 

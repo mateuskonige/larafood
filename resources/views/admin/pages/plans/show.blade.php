@@ -21,7 +21,7 @@
                     @csrf
                     @method('DELETE')
 
-                    <button type="submit" class="btn btn-danger">Deletar {{ $plan->name }}</button>
+                    <button type="submit" class="btn btn-danger"><i class="fa fa-times-circle"></i> Deletar {{ $plan->name }}</button>
                 </form>
             </div>
         </form>
