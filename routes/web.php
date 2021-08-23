@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PlanController;
+use App\Http\Controllers\Admin\DetailPlanController;
 use Symfony\Component\Routing\Route as RoutingRoute;
 
 /*
@@ -20,7 +21,15 @@ Route::get('/', function () {
 });
 
 Route::prefix('admin')->group(function() {
+
+    /**
+     * Home dashboard
+     */
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    
+    /**
+     * Rotas para planos
+     */
     Route::get('/plans', [PlanController::class, 'index'])->name('plans.index');
     Route::get('/plan/{url}', [PlanController::class, 'show'])->name('plan.show');
     Route::get('/plans/create', [PlanController::class, 'create'])->name('plans.create');
@@ -29,4 +38,9 @@ Route::prefix('admin')->group(function() {
     Route::put('/plans/{url}', [PlanController::class, 'update'])->name('plan.update');
     Route::delete('/plan/{id}', [PlanController::class, 'destroy'])->name('plan.destroy');
     Route::any('/plans/search', [PlanController::class, 'search'])->name('plans.search');
+
+    /**
+     * Rotas para detalhes dos planos
+     */
+    Route::get('/plans/{url}/details', [DetailPlanController::class, 'index'])->name('plan.details.index');
 });

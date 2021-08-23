@@ -9,7 +9,7 @@ class DetailPlan extends Model
 {
     use HasFactory;
 
-    protected $table = 'detail_plans';
+    protected $table = 'details_plan';
 
     public function plan() {
         $this->belongsTo(Plan::class);
