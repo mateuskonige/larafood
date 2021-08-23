@@ -1,4 +1,3 @@
-
 <div class="card-body">
     @include('admin.includes.alert')
 

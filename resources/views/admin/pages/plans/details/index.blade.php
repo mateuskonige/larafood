@@ -14,7 +14,12 @@
 
     <br>
 
-    <h1>Detalhes do plano {{ $plan->name }}</h1>
+    <h1></h1>
+
+    <div class="d-flex justify-content-between">
+        <h1>Detalhes do plano {{ $plan->name }}</h1>
+        <a href="{{ route('plan.details.create', $plan->url) }}" class="btn btn-dark"><i class="fa fa-plus"></i> Adicionar</a>
+    </div>
 @stop
 
 @section('content')

@@ -43,4 +43,6 @@ Route::prefix('admin')->group(function() {
      * Rotas para detalhes dos planos
      */
     Route::get('/plans/{url}/details', [DetailPlanController::class, 'index'])->name('plan.details.index');
+    Route::get('/plans/{url}/details/create', [DetailPlanController::class, 'create'])->name('plan.details.create');
+    Route::post('/plans/{url}/details', [DetailPlanController::class, 'store'])->name('plan.details.store');
 });
