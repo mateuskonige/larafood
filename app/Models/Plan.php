@@ -15,4 +15,8 @@ class Plan extends Model
         'price',
         'description'
     ];
+
+    public function details() {
+        return $this->hasMany(DetailPlan::class);
+    }
 }
