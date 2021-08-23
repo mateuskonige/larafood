@@ -3,7 +3,17 @@
 @section('title', "Editar plano $plan->name")
 
 @section('content_header')
-    <h1>Editar plano {{ $plan->name }}</h1>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('plans.index') }}">Planos</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Editar</a></li>
+        </ol>
+    </nav>
+
+    <br>
+
+    <h1>Editar plano <b>{{ $plan->name }}</b></h1>
 @stop
 
 @section('content')

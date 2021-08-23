@@ -21,6 +21,19 @@ class DetailPlanController extends Controller
         return view('admin.pages.plans.details.index', compact('plan', 'details'));
     }
 
+    public function show($urlPlan, $idDetail)
+    {
+        $plan = Plan::where('url', $urlPlan)->first();
+        $detail = DetailPlan::where('id', $idDetail)->first();
+
+        if (!$plan || !$detail) {
+            return redirect()->back();
+        }
+
+        return view('admin.pages.plans.details.show', compact('plan', 'detail'));
+    }
+
+
     public function create($urlPlan) {
         if (!$plan = Plan::where('url', $urlPlan)->first()) {
             return redirect()->back();
@@ -67,5 +80,20 @@ class DetailPlanController extends Controller
         $detail->update($request->all());
 
         return redirect()->route('plan.details.index', $plan->url);
+    }
+
+    public function destroy($urlPlan, $idDetail)
+    {
+        $plan = Plan::where('url', $urlPlan)->first();
+        $detail = DetailPlan::where('id', $idDetail)->first();
+
+        if (!$plan || !$detail) {
+            return redirect()->back();
+        }
+
+        $detail->delete();
+
+        return redirect()->route('plan.details.index', $plan->url)
+                        ->with('success', 'Registro deletado com sucesso.');
     }
 }

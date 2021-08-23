@@ -5,3 +5,10 @@
         @endforeach
     </div>
 @endif
+
+@if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert"><i class="fa fa-times-circle"></i></button>
+        <span>{{ $message }}</span>
+    </div>
+@endif

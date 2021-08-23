@@ -43,8 +43,10 @@ Route::prefix('admin')->group(function() {
      * Rotas para detalhes dos planos
      */
     Route::get('/plans/{url}/details', [DetailPlanController::class, 'index'])->name('plan.details.index');
+    Route::get('/plan/{url}/details/{id}', [DetailPlanController::class, 'show'])->name('plan.details.show');
     Route::get('/plans/{url}/details/create', [DetailPlanController::class, 'create'])->name('plan.details.create');
     Route::post('/plans/{url}/details/', [DetailPlanController::class, 'store'])->name('plan.details.store');
     Route::get('/plan/{url}/details/{idDetail}/edit', [DetailPlanController::class, 'edit'])->name('plan.details.edit');
     Route::put('/plan/{url}/details/{idDetail}', [DetailPlanController::class, 'update'])->name('plan.details.update');
+    Route::delete('/plan/{url}/details/{idDetail}', [DetailPlanController::class, 'destroy'])->name('plan.details.destroy');
 });

@@ -14,10 +14,8 @@
 
     <br>
 
-    <h1></h1>
-
     <div class="d-flex justify-content-between">
-        <h1>Detalhes do plano {{ $plan->name }}</h1>
+        <h1>Detalhes do plano <b>{{ $plan->name }}</b></h1>
         <a href="{{ route('plan.details.create', $plan->url) }}" class="btn btn-dark"><i class="fa fa-plus"></i> Adicionar</a>
     </div>
 @stop
@@ -25,6 +23,8 @@
 @section('content')
     <div class="card">
         <div class="card-body">
+            @include('admin.includes.alert')
+
             <table class="table table-condensed">
                 <thead>
                     <tr>
@@ -36,8 +36,8 @@
                     @foreach ($details as $detail)
                         <tr>
                             <td>{{ $detail->name }}</td>
-                            <td width="150px">
-                                <a href="{{ route('plan.show', $plan->url) }}" class="btn btn-outline-primary">Ver</a>
+                            <td width="180px">
+                                <a href="{{ route('plan.details.show', [$plan->url, $detail->id]) }}" class="btn btn-outline-primary">Ver</a>
                                 <a href="{{ route('plan.details.edit', [$plan->url, $detail->id]) }}" class="btn btn-dark">Editar</a>
                             </td>
                         </tr>
