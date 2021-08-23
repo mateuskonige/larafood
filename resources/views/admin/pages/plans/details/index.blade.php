@@ -38,7 +38,7 @@
                             <td>{{ $detail->name }}</td>
                             <td width="150px">
                                 <a href="{{ route('plan.show', $plan->url) }}" class="btn btn-outline-primary">Ver</a>
-                                <a href="{{ route('plan.edit', $plan->url) }}" class="btn btn-dark">Editar</a>
+                                <a href="{{ route('plan.details.edit', [$plan->url, $detail->id]) }}" class="btn btn-dark">Editar</a>
                             </td>
                         </tr>
                     @endforeach    

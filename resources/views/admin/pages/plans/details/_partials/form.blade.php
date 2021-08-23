@@ -3,7 +3,7 @@
 
     <div class="form-group">
         <label for="name">Detalhe:</label>
-        <input type="text" name="name" class="form-control" placeholder="ex.: Breve descrição do detalhe do plano aqui!" value="{{ $details->name ?? old('description') }}">
+        <input type="text" name="name" class="form-control" placeholder="ex.: Breve descrição do detalhe do plano aqui!" value="{{ $detail->name ?? old('description') }}">
     </div>
 </div>
 
