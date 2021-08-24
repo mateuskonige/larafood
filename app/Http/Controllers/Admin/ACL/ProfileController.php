@@ -126,8 +126,7 @@ class ProfileController extends Controller
     {
         $filters = $request->except('_token');
 
-        $profiles = Profile::where('name', 'LIKE', "%{$request->filter}%")
-        ->orWhere('description', 'LIKE', "%{$request->filter}%")
+        $profiles = Profile::where('name', $request->filter)
         ->paginate(1);
 
         return view('admin.pages.profiles.index', compact('profiles', 'filters'));
