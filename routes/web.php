@@ -32,7 +32,7 @@ Route::prefix('admin')->group(function() {
      * Rotas para perfis
      */
     Route::resource('/profiles', ProfileController::class);
-    
+    Route::any('/profiles/search', [PlanController::class, 'search'])->name('profiles.search');
     /**
      * Rotas para planos
      */

@@ -115,4 +115,21 @@ class ProfileController extends Controller
 
         return redirect()->route('profiles.index');
     }
+
+    /**
+     * Search results.
+     *
+     * @param  Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request)
+    {
+        $filters = $request->except('_token');
+
+        $profiles = Profile::where('name', 'LIKE', "%{$request->filter}%")
+        ->orWhere('description', 'LIKE', "%{$request->filter}%")
+        ->paginate(1);
+
+        return view('admin.pages.profiles.index', compact('profiles', 'filters'));
+    }
 }
