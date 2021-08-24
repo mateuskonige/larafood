@@ -233,6 +233,11 @@ return [
             'url'  => 'admin/plans',
             'icon' => 'fa fa-boxes',
         ],
+        [
+            'text' => 'Perfis',
+            'url'  => 'admin/profiles',
+            'icon' => 'fa fa-user',
+        ],
     ],
 
     /*
