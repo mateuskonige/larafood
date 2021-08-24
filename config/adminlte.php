@@ -238,6 +238,11 @@ return [
             'url'  => 'admin/profiles',
             'icon' => 'fa fa-user',
         ],
+        [
+            'text' => 'Permissões',
+            'url'  => 'admin/permissions',
+            'icon' => 'fa fa-lock',
+        ],
     ],
 
     /*

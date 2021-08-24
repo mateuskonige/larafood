@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\DetailPlanController;
 use Symfony\Component\Routing\Route as RoutingRoute;
 use App\Http\Controllers\Admin\ACL\ProfileController;
+use App\Http\Controllers\Admin\ACL\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,13 @@ Route::prefix('admin')->group(function() {
     Route::resource('/profiles', ProfileController::class);
     Route::any('/profiles/search', [ProfileController::class, 'search'])->name('profiles.search');
     
+    /**
+     * Rotas para permissões
+     */
+    Route::resource('/permissions', PermissionController::class);
+    Route::any('/permissions/search', [PermissionController::class, 'search'])->name('permissions.search');
+
+
     /**
      * Rotas para planos
      */
