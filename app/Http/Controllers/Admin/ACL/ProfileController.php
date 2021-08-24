@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin\ACL;
 
-use App\Http\Controllers\Controller;
 use App\Models\Profile;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdateProfile;
 
 class ProfileController extends Controller
 {
@@ -32,10 +33,10 @@ class ProfileController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreUpdateProfile  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUpdateProfile $request)
     {
         Profile::create($request->all());
 
@@ -61,19 +62,33 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $profile = Profile::where('id', $id)->first();
+
+        if (!$profile) {
+            return redirect()->back();
+        }
+
+        return view('admin.pages.profiles.edit', compact('profile'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreUpdateProfile $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUpdateProfile $request, $id)
     {
-        //
+        $profile = Profile::where('id', $id)->first();
+
+        if (!$profile) {
+            return redirect()->back();
+        }
+
+        $profile->update($request->all());
+
+        return redirect()->route('profiles.index');
     }
 
     /**

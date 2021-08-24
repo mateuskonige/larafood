@@ -26,7 +26,7 @@ Route::prefix('admin')->group(function() {
     /**
      * Home dashboard
      */
-    // Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
 
     /**
      * Rotas para perfis
