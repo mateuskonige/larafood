@@ -46,6 +46,8 @@ Route::prefix('admin')->group(function() {
      * Perfil x Permissão
      */
     Route::get('profiles/{id}/permissions', [ProfilePermissionController::class, 'permissions'])->name('profiles.permissions');
+    Route::get('profiles/{id}/permissions/create', [ProfilePermissionController::class, 'permissionsAvailable'])->name('profiles.permissions.available');
+    Route::post('profiles/{id}/permissions', [ProfilePermissionController::class, 'AttachPermissionsProfile'])->name('profiles.permissions.attach');
 
     /**
      * Rotas para planos

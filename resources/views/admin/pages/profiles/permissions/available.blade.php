@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', "Permissões do perfil $profile->name")
+@section('title', "Permissões disponíveis para o perfil $profile->name")
 
 @section('content_header')
     <nav aria-label="breadcrumb">
@@ -14,8 +14,7 @@
     <br>
 
     <div class="d-flex justify-content-between">
-        <h1>Permissões do perfil <b>{{ $profile->name }}</b></h1>
-        <a href="{{ route('profiles.create') }}" class="btn btn-dark"><i class="fa fa-plus"></i> Add permissão</a>
+        <h1>Permissões disponíveis para o perfil <b>{{ $profile->name }}</b></h1>
     </div>
 @stop
 
@@ -35,19 +34,29 @@
             <table class="table table-condensed">
                 <thead>
                     <tr>
+                        <th width="50px">#</th>
                         <th>Nome</th>
-                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($permissions as $permission)
+                    <form action="{{ route('profiles.permissions.attach', $profile->id) }}" method="POST">
+                        @csrf
+                        
+                        @include('admin.includes.alert')
+
+                        @foreach ($permissions as $permission)
+                            <tr>
+                                <td><input type="checkbox" name="permissions[]" value="{{ $permission->id }}"></td>
+                                <td>{{ $permission->name }}</td>
+                            </tr>
+                        @endforeach  
+                        
                         <tr>
-                            <td>{{ $permission->name }}</td>
-                            <td width="150px">
-                                <a href="{{ route('permissions.edit', $permission->id) }}" class="btn btn-dark">Editar</a>
+                            <td>
+                                <button type="submit" class="btn btn-success">Vincular</button>
                             </td>
                         </tr>
-                    @endforeach    
+                    </form>
                 </tbody>
             </table>
         </div>
