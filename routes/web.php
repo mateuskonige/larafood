@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\DetailPlanController;
 use Symfony\Component\Routing\Route as RoutingRoute;
+use App\Http\Controllers\Admin\ACL\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,12 @@ Route::prefix('admin')->group(function() {
     /**
      * Home dashboard
      */
-    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    // Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+
+    /**
+     * Rotas para perfis
+     */
+    Route::resource('/profiles', ProfileController::class);
     
     /**
      * Rotas para planos
