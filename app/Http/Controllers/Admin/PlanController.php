@@ -57,10 +57,14 @@ class PlanController extends Controller
     }
 
     public function destroy($id) {
-        $plan = Plan::where('id', $id)->first();
+        $plan = Plan::with('details')->where('id', $id)->first();
 
         if (!$plan) {
             return redirect()->back();
+        }
+
+        if($plan->details->count() > 0) {
+            return redirect()->back()->with('error', 'Há detalhes vinculados a este registro, não é possível excluir.');
         }
 
         $plan->delete();

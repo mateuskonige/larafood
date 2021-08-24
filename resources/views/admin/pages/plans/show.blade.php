@@ -27,6 +27,8 @@
             </div>
 
             <div class="card-footer">
+                @include('admin.includes.alert')
+
                 <form action="{{ route('plan.destroy', $plan->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
