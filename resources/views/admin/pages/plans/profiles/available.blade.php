@@ -21,7 +21,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <form action="{{ route('plans.profiles.available', $plan->id) }}" method="POST" class="form form-inline">
+            <form action="{{ route('plans.profiles.available', $plan->url) }}" method="POST" class="form form-inline">
                 @csrf
             
                 <div class="form-group">
