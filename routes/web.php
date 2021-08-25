@@ -24,7 +24,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->group(function() {
+Route::prefix('admin')->middleware('auth')->group(function() {
 
     /**
      * Home dashboard
@@ -84,3 +84,8 @@ Route::prefix('admin')->group(function() {
     Route::put('/plan/{url}/details/{idDetail}', [DetailPlanController::class, 'update'])->name('plan.details.update');
     Route::delete('/plan/{url}/details/{idDetail}', [DetailPlanController::class, 'destroy'])->name('plan.details.destroy');
 });
+
+/**
+ * Auth
+ */
+Auth::routes();
