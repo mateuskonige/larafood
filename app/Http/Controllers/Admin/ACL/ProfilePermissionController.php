@@ -41,16 +41,13 @@ class ProfilePermissionController extends Controller
         }
 
         $filters = $request->except('_token');
-        if($request->filter) {
-
-        }
 
         $permissions = $profile->permissionsAvailable($request->filter);
 
         return view('admin.pages.profiles.permissions.available', compact('profile', 'permissions', 'filters'));
     }
 
-    public function AttachPermissionsProfile(Request $request, $idProfile) {
+    public function attachPermissionsProfile(Request $request, $idProfile) {
         $profile = Profile::find($idProfile);
 
         if (!$profile) {

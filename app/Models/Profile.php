@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Plan;
 use App\Models\Permission;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,6 +20,13 @@ class Profile extends Model
         return $this->belongsToMany(Permission::class);
     }
 
+    /**
+     * Get plans
+     */
+    public function plans()
+    {
+        return $this->belongsToMany(Plan::class);
+    }
     /**
      * Permissoes nao linkadas ao perfil
      */

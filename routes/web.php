@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DetailPlanController;
 use Symfony\Component\Routing\Route as RoutingRoute;
 use App\Http\Controllers\Admin\ACL\ProfileController;
 use App\Http\Controllers\Admin\ACL\PermissionController;
+use App\Http\Controllers\Admin\ACL\PlanProfileController;
 use App\Http\Controllers\Admin\ACL\ProfilePermissionController;
 
 /*
@@ -43,13 +44,22 @@ Route::prefix('admin')->group(function() {
     Route::any('/permissions/search', [PermissionController::class, 'search'])->name('permissions.search');
 
     /**
+     * Plano x Perfil
+     */
+    Route::get('plans/{url}/profiles', [PlanProfileController::class, 'profiles'])->name('plans.profiles');
+    Route::get('profiles/{id}/plans', [PlanProfileController::class, 'plans'])->name('profiles.plans');
+    Route::any('plans/{url}/profiles/create', [PlanProfileController::class, 'profilesAvailable'])->name('plans.profiles.available');
+    Route::get('plans/{url}/profiles/{id}/detach', [PlanProfileController::class, 'detachProfilesAvailable'])->name('plans.profiles.detach');
+    Route::post('plans/{url}/profiles', [PlanProfileController::class, 'attachProfilesPlan'])->name('plans.profiles.attach');
+
+    /**
      * Perfil x Permissão
      */
     Route::get('profiles/{id}/permissions', [ProfilePermissionController::class, 'permissions'])->name('profiles.permissions');
     Route::get('permissions/{id}/profiles', [ProfilePermissionController::class, 'profiles'])->name('permissions.profiles');
     Route::any('profiles/{id}/permissions/create', [ProfilePermissionController::class, 'permissionsAvailable'])->name('profiles.permissions.available');
     Route::get('profiles/{id}/permissions/{idPermission}/detach', [ProfilePermissionController::class, 'detachPermissionsAvailable'])->name('profiles.permissions.detach');
-    Route::post('profiles/{id}/permissions', [ProfilePermissionController::class, 'AttachPermissionsProfile'])->name('profiles.permissions.attach');
+    Route::post('profiles/{id}/permissions', [ProfilePermissionController::class, 'attachPermissionsProfile'])->name('profiles.permissions.attach');
 
     /**
      * Rotas para planos
