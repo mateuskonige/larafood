@@ -126,8 +126,9 @@ class PermissionController extends Controller
     {
         $filters = $request->except('_token');
 
-        $permissions = permission::where('name', $request->filter)
-            ->paginate(1);
+        $permissions = Permission::where('name', 'LIKE', "%{$request->filter}%")
+        ->orWhere('description', 'LIKE', "%{$request->filter}%")
+        ->paginate(1);
 
         return view('admin.pages.permissions.index', compact('permissions', 'filters'));
     }

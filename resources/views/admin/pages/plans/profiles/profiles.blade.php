@@ -21,16 +21,6 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header">
-            <form action="{{ route('profiles.search') }}" method="POST" class="form form-inline">
-                @csrf
-            
-                <div class="form-group">
-                    <input type="text" class="form-control" name="filter" placeholder="Nome" value="{{ $filters['filter'] ?? '' }}">
-                    <button class="btn btn-dark" type="submit"><i class="fa fa-filter"></i> Filtrar</button>
-                </div>
-            </form>
-        </div>
         <div class="card-body">
             <table class="table table-condensed">
                 <thead>

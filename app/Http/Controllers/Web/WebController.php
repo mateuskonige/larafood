@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 class WebController extends Controller
 {
     public function index() {
-        $plans = Plan::with('details')->get();
+        $plans = Plan::with('details')->orderBy('price', 'ASC')->get();
 
         return view('web.pages.index', compact('plans'));
     }

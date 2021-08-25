@@ -33,14 +33,14 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     /**
      * Rotas para perfis
      */
-    Route::resource('/profiles', ProfileController::class);
     Route::any('/profiles/search', [ProfileController::class, 'search'])->name('profiles.search');
+    Route::resource('/profiles', ProfileController::class);
     
     /**
      * Rotas para permissões
      */
-    Route::resource('/permissions', PermissionController::class);
     Route::any('/permissions/search', [PermissionController::class, 'search'])->name('permissions.search');
+    Route::resource('/permissions', PermissionController::class);
 
     /**
      * Plano x Perfil
