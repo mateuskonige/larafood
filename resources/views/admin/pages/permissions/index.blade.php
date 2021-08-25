@@ -42,9 +42,9 @@
                     @foreach ($permissions as $permission)
                         <tr>
                             <td>{{ $permission->name }}</td>
-                            <td width="150px">
+                            <td width="190px">
+                                <a href="{{ route('permissions.profiles', $permission->id) }}" class="btn btn-outline-info"><i class="fa fa-user"></i></a>
                                 <a href="{{ route('permissions.show', $permission->id) }}" class="btn btn-outline-primary">Ver</a>
-                                {{-- <a href="{{ route('permission.details.index', $permission->id) }}" class="btn btn-primary">Detalhes</a> --}}
                                 <a href="{{ route('permissions.edit', $permission->id) }}" class="btn btn-dark">Editar</a>
                             </td>
                         </tr>

@@ -21,6 +21,18 @@ class ProfilePermissionController extends Controller
         return view('admin.pages.profiles.permissions.permissions', compact('profile', 'permissions'));
     }
 
+    public function profiles($idPermission) {
+        $permission = Permission::find($idPermission);
+
+        if (!$permission) {
+            return redirect()->back();
+        }
+        
+        $profiles = $permission->profiles()->paginate();
+
+        return view('admin.pages.permissions.profiles.profiles', compact('permission', 'profiles'));
+    }    
+
     public function permissionsAvailable(Request $request, $idProfile) {
         $profile = Profile::find($idProfile);
 
@@ -65,6 +77,6 @@ class ProfilePermissionController extends Controller
 
         $profile->permissions()->detach($permission);
 
-        return redirect()->route('profiles.permissions', $profile->id);
+        return redirect()->back();
     }
 }
