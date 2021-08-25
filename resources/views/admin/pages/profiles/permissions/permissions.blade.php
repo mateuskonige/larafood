@@ -44,7 +44,7 @@
                         <tr>
                             <td>{{ $permission->name }}</td>
                             <td width="150px">
-                                <a href="{{ route('permissions.edit', $permission->id) }}" class="btn btn-dark">Editar</a>
+                                <a href="{{ route('profiles.permissions.detach', [$profile->id, $permission->id]) }}" class="btn btn-danger">Desvincular</a>
                             </td>
                         </tr>
                     @endforeach    
