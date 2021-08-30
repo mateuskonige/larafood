@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Plan;
 use App\Models\User;
-use Illuminate\Support\Str;
+use App\Services\TenantService;
+use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -70,23 +70,10 @@ class RegisterController extends Controller
         if (!$plan = session('plan')) {
             return redirect()->route('web.index');
         }
-        
-        $tenant = $plan->tenants()->create([
-            'cnpj' => $data['cnpj'],
-            'name' => $data['empresa'],
-            'url' => Str::kebab($data['empresa']),
-            'email' => $data['email'],
 
-            'subscription' => now(),
-            'expires_at' => now()->addDays(7),
-        ]);
+        $tenantService = App::make(TenantService::class);
 
-        $user = $tenant->users()->create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
-
+        $user = $tenantService->make($plan, $data);
         return $user;
     }
 }
