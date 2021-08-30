@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Tenant;
 use App\Models\Profile;
 use App\Models\DetailPlan;
 use Illuminate\Database\Eloquent\Model;
@@ -24,6 +25,10 @@ class Plan extends Model
 
     public function profiles() {
         return $this->belongsToMany(Profile::class);
+    }
+
+    public function tenants() {
+        return $this->hasMany(Tenant::class);
     }
 
     /**

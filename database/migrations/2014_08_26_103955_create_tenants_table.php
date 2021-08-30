@@ -16,7 +16,7 @@ class CreateTenantsTable extends Migration
         Schema::create('tenants', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('plan_id');
-            $table->string('cpnj')->unique();
+            $table->string('cnpj')->unique();
             $table->string('name')->unique();
             $table->string('url')->unique();
             $table->string('email')->unique();
