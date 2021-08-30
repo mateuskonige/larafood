@@ -13,4 +13,14 @@ class WebController extends Controller
 
         return view('web.pages.index', compact('plans'));
     }
+
+    public function plan($urlPlan) {
+        if(!$plan = Plan::where('url', $urlPlan)->first()){
+            return redirect()->back();
+        };
+
+        session()->put('plan', $plan);
+
+        return redirect()->route('register');
+    }
 }

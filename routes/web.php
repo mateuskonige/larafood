@@ -21,7 +21,6 @@ use App\Http\Controllers\Admin\ACL\ProfilePermissionController;
 |
 */
 
-Route::get('/', [WebController::class, 'index'])->name('web.index');
 
 Route::prefix('admin')->middleware('auth')->group(function() {
 
@@ -83,6 +82,14 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::put('/plan/{url}/details/{idDetail}', [DetailPlanController::class, 'update'])->name('plan.details.update');
     Route::delete('/plan/{url}/details/{idDetail}', [DetailPlanController::class, 'destroy'])->name('plan.details.destroy');
 });
+
+/**
+ * Site
+ */
+Route::get('/', [WebController::class, 'index'])->name('web.index');
+Route::get('/plan/{url}', [WebController::class, 'plan'])->name('plan.subscription');
+
+
 
 /**
  * Auth

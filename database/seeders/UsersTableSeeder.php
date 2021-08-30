@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Tenant;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
 {
@@ -20,7 +21,7 @@ class UsersTableSeeder extends Seeder
         $tenant->users()->create([
             'name' => 'Mateus Reis',
             'email' => 'admin@admin.com',
-            'password' => bcrypt('testando'),
+            'password' => Hash::make('testando'),
         ]);
     }
 }
