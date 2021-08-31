@@ -34,6 +34,12 @@ Route::prefix('admin')->middleware('auth')->group(function() {
      */
     Route::any('/profiles/search', [ProfileController::class, 'search'])->name('profiles.search');
     Route::resource('/profiles', ProfileController::class);
+
+    /**
+     * Rotas para perfis
+     */
+    Route::any('/users/search', [UserController::class, 'search'])->name('users.search');
+    Route::resource('/users', UserController::class);
     
     /**
      * Rotas para permissões
