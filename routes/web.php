@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\WebController;
 use App\Http\Controllers\Admin\PlanController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DetailPlanController;
 use Symfony\Component\Routing\Route as RoutingRoute;
 use App\Http\Controllers\Admin\ACL\ProfileController;
