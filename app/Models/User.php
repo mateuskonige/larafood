@@ -44,6 +44,6 @@ class User extends Authenticatable
     ];
 
     public function tenants() {
-        return $this->belongsTo(Tenant::class);
+        return $this->belongsTo(Tenant::class, 'tenant_id');
     }
 }

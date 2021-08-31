@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUpdateUser;
 
 class UserController extends Controller
@@ -40,7 +41,7 @@ class UserController extends Controller
     {
         $data = $request->all();
         $data['tenant_id'] = auth()->user()->tenant_id;
-
+        $data['password'] = Hash::make($data['password']);
         User::create($data);
 
         return redirect()->route('users.index');
@@ -95,7 +96,13 @@ class UserController extends Controller
             return redirect()->back();
         }
 
-        $user->update($request->all());
+        $data = $request->only(['name', 'email']);
+
+        if($request->password){
+            $data['password'] = Hash::make($data['password']);
+        }
+
+        $user->update($data);
 
         return redirect()->route('users.index');
     }
