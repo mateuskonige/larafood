@@ -74,6 +74,7 @@ class RegisterController extends Controller
         $tenantService = App::make(TenantService::class);
 
         $user = $tenantService->make($plan, $data);
+        
         return $user;
     }
 }

@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->paginate();
+        $users = User::latest()->tenantUsers()->paginate();
         return view('admin.pages.users.index', compact('users'));
     }
 
@@ -55,7 +55,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::where('id', $id)->first();
+        $user = User::where('id', $id)->tenantUsers()->first();
 
         if (!$user) {
             return redirect()->back();
@@ -72,7 +72,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::where('id', $id)->first();
+        $user = User::where('id', $id)->tenantUsers()->first();
 
         if (!$user) {
             return redirect()->back();
@@ -90,7 +90,7 @@ class UserController extends Controller
      */
     public function update(StoreUpdateUser $request, $id)
     {
-        $user = User::where('id', $id)->first();
+        $user = User::where('id', $id)->tenantUsers()->first();
 
         if (!$user) {
             return redirect()->back();
@@ -115,7 +115,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::where('id', $id)->first();
+        $user = User::where('id', $id)->tenantUsers()->first();
 
         if (!$user) {
             return redirect()->back();
