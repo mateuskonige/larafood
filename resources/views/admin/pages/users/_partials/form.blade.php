@@ -10,7 +10,7 @@
         <input type="email" name="email" class="form-control" placeholder="ex.: johndoe@example.com" value="{{ $user->email ?? old('email') }}">
     </div>
     <div class="form-group">
-        <label for="password">Descrição:</label>
+        <label for="password">Senha:</label>
         <input type="password" name="password" class="form-control" placeholder="Senha">
     </div>
 </div>
