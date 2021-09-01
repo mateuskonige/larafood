@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\WebController;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DetailPlanController;
 use Symfony\Component\Routing\Route as RoutingRoute;
 use App\Http\Controllers\Admin\ACL\ProfileController;
@@ -37,10 +38,16 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::resource('/profiles', ProfileController::class);
 
     /**
-     * Rotas para perfis
+     * Rotas para usuários
      */
     Route::any('/users/search', [UserController::class, 'search'])->name('users.search');
     Route::resource('/users', UserController::class);
+    
+    /**
+     * Rotas para usuários
+     */
+    Route::any('/categories/search', [CategoryController::class, 'search'])->name('categories.search');
+    Route::resource('/categories', CategoryController::class);
     
     /**
      * Rotas para permissões
