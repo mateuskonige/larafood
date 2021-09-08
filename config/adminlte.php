@@ -256,7 +256,7 @@ return [
         [
             'text' => 'Produtos',
             'url'  => 'admin/products',
-            'icon' => 'fa fa-product',
+            'icon' => 'fa fa-cart-arrow-down',
         ],
     ],
 
