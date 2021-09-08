@@ -258,6 +258,11 @@ return [
             'url'  => 'admin/products',
             'icon' => 'fa fa-cart-arrow-down',
         ],
+        [
+            'text' => 'Mesas',
+            'url'  => 'admin/tables',
+            'icon' => 'fa fa-table',
+        ],
     ],
 
     /*

@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\ACL\PermissionController;
 use App\Http\Controllers\Admin\ACL\PlanProfileController;
 use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\ACL\ProfilePermissionController;
+use App\Http\Controllers\Admin\TableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,7 +67,11 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::get('products/{id}/categories/{idCategory}/detach', [CategoryProductController::class, 'detachCategoriesAvailable'])->name('products.categories.detach');
     Route::post('products/{id}/categories', [CategoryProductController::class, 'attachCategoriesProduct'])->name('products.categories.attach');
 
-
+    /**
+     * Rotas para mesas
+     */
+    Route::any('/tables/search', [TableController::class, 'search'])->name('tables.search');
+    Route::resource('/tables', TableController::class);
 
     /**
      * Rotas para permissões

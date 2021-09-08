@@ -25,8 +25,7 @@ class Product extends Model
         return $this->belongsToMany(Category::class);
     }
 
-    public function tenant()
-    {
+    public function tenant() {
         return $this->belongsTo(Tenant::class);
     }
 
