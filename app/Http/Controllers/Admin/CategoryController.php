@@ -51,7 +51,9 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        return view('admin.pages.categories.show', compact('category'));
     }
 
     /**
@@ -62,19 +64,24 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        return view('admin.pages.categories.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreUpdateCategory  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUpdateCategory $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->update($request->all());
+
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -85,6 +92,21 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->delete();
+
+        return redirect()->route('categories.index');
+    }
+
+    public function search(Request $request)
+    {
+        $filters = $request->except('_token');
+
+        $categories = Category::where('name', 'LIKE', "%{$request->filter}%")
+        ->orWhere('description', 'LIKE', "%{$request->filter}%")
+        ->latest()
+        ->paginate(1);
+
+        return view('admin.pages.categories.index', compact('categories', 'filters'));
     }
 }
