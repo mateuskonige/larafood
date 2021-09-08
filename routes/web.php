@@ -11,6 +11,7 @@ use Symfony\Component\Routing\Route as RoutingRoute;
 use App\Http\Controllers\Admin\ACL\ProfileController;
 use App\Http\Controllers\Admin\ACL\PermissionController;
 use App\Http\Controllers\Admin\ACL\PlanProfileController;
+use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\ACL\ProfilePermissionController;
 
 /*
@@ -55,7 +56,18 @@ Route::prefix('admin')->middleware('auth')->group(function() {
      */
     Route::any('/products/search', [ProductController::class, 'search'])->name('products.search');
     Route::resource('/products', ProductController::class);
-    
+
+    /**
+     * Categorias x Produtos
+     */
+    Route::get('products/{id}/categories', [CategoryProductController::class, 'categories'])->name('products.categories');
+    Route::get('categories/{id}/products', [CategoryProductController::class, 'products'])->name('categories.products');
+    Route::any('products/{id}/categories/create', [CategoryProductController::class, 'categoriesAvailable'])->name('products.categories.available');
+    Route::get('products/{id}/categories/{idCategory}/detach', [CategoryProductController::class, 'detachCategoriesAvailable'])->name('products.categories.detach');
+    Route::post('products/{id}/categories', [CategoryProductController::class, 'attachCategoriesProduct'])->name('products.categories.attach');
+
+
+
     /**
      * Rotas para permissões
      */

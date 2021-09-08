@@ -46,7 +46,8 @@
                             <td><img src="{{ url("storage/{$product->image}") }}" alt="{{ $product->title }}" style="max-width: 50px;"></td>
                             <td>{{ $product->title }}</td>
                             <td>R$ {{ number_format($product->price, 2,',','.') }}</td>
-                            <td width="150px">
+                            <td width="200px">
+                                <a href="{{ route('products.categories', $product->id) }}" class="btn btn-outline-primary"><i class="fa fa-cart-arrow-down"></i></a>
                                 <a href="{{ route('products.show', $product->id) }}" class="btn btn-outline-primary">Ver</a>
                                 <a href="{{ route('products.edit', $product->id) }}" class="btn btn-dark">Editar</a>
                             </td>
