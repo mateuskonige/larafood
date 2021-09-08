@@ -24,6 +24,6 @@
 
 <div class="card-footer">
     <div class="form-group">
-        <button type="submit" class="btn btn-success">Atualizar</button>
+        <button type="submit" class="btn btn-success btn-block">Atualizar</button>
     </div>
 </div>

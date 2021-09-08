@@ -14,7 +14,9 @@
 
     <div class="d-flex justify-content-between">
         <h1>Gestão de produtos</h1>
-        <a href="{{ route('products.create') }}" class="btn btn-dark"><i class="fa fa-plus"></i></a>
+                    <a href="{{ route('products.create') }}" class="btn btn-dark"><i class="fa fa-plus"></i> Adicionar</a>
+
+
     </div>
 @stop
 
@@ -31,15 +33,16 @@
                     </div>
                 </div>
             </form>
+
         </div>
         <div class="card-body">
-            <table class="table table-condensed">
+            <table class="table table-hover">
                 <thead>
                     <tr>
                         <th style="max-width: 100px;">Imagem</th>
                         <th>Titulo</th>
                         <th>Preço</th>
-                        <th>Opções</th>
+                        <th class="text-right">Opções</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,13 +51,13 @@
                             <td><img src="{{ url("storage/{$product->image}") }}" alt="{{ $product->title }}" style="max-width: 50px;"></td>
                             <td>{{ $product->title }}</td>
                             <td>R$ {{ number_format($product->price, 2,',','.') }}</td>
-                            <td width="30px">
+                            <td class="text-right">
                                 <div class="btn-group dropleft">
                                     <button class="btn btn-outline-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a href="{{ route('products.categories', $product->id) }}" class="dropdown-item"><i class="fa fa-cart-arrow-down"></i> Categorias</a>
+                                        <a href="{{ route('products.categories', $product->id) }}" class="dropdown-item"><i class="fa fa-layer-group"></i> Categorias</a>
                                         <div class="dropdown-divider"></div>
                                         <a href="{{ route('products.show', $product->id) }}" class="dropdown-item">Ver</a>
                                         <a href="{{ route('products.edit', $product->id) }}" class="dropdown-item">Editar</a>
