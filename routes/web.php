@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\WebController;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DetailPlanController;
 use Symfony\Component\Routing\Route as RoutingRoute;
@@ -44,10 +45,16 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::resource('/users', UserController::class);
     
     /**
-     * Rotas para usuários
+     * Rotas para categorias
      */
     Route::any('/categories/search', [CategoryController::class, 'search'])->name('categories.search');
     Route::resource('/categories', CategoryController::class);
+    
+    /**
+     * Rotas para produtos
+     */
+    Route::any('/products/search', [ProductController::class, 'search'])->name('products.search');
+    Route::resource('/products', ProductController::class);
     
     /**
      * Rotas para permissões
