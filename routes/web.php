@@ -29,6 +29,10 @@ use App\Http\Controllers\Admin\TableController;
 
 Route::prefix('admin')->middleware('auth')->group(function() {
 
+    Route::get('teste-acl', function() {
+        dd(auth()->user()->isAdmin());
+    });
+
     /**
      * Home dashboard
      */
