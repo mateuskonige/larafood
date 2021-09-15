@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\WebController;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\TableController;
+use App\Http\Controllers\Admin\TenantController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DetailPlanController;
@@ -13,7 +15,6 @@ use App\Http\Controllers\Admin\ACL\PermissionController;
 use App\Http\Controllers\Admin\ACL\PlanProfileController;
 use App\Http\Controllers\Admin\CategoryProductController;
 use App\Http\Controllers\Admin\ACL\ProfilePermissionController;
-use App\Http\Controllers\Admin\TableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,12 @@ Route::prefix('admin')->middleware('auth')->group(function() {
      */
     Route::any('/products/search', [ProductController::class, 'search'])->name('products.search');
     Route::resource('/products', ProductController::class);
+
+    /**
+     * Rotas para empresas
+     */
+    Route::any('/tenants/search', [TenantController::class, 'search'])->name('tenants.search');
+    Route::resource('/tenants', TenantController::class);
 
     /**
      * Categorias x Produtos

@@ -10,6 +10,10 @@ use App\Http\Requests\StoreUpdateProduct;
 
 class ProductController extends Controller
 {
+    public function __construct(Product $product){
+        $this->middleware('can:products');
+    }
+    
     /**
      * Display a listing of the resource.
      *

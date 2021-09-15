@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class PlanController extends Controller
 {
+    public function __construct(Plan $plan){
+        $this->middleware('can:plans');
+    }
+    
     public function index() {
         $plans = Plan::latest()->paginate();
         return view('admin.pages.plans.index', compact('plans'));

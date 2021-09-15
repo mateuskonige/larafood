@@ -9,6 +9,10 @@ use App\Http\Requests\StoreUpdateCategory;
 
 class CategoryController extends Controller
 {
+    public function __construct(Category $category){
+        $this->middleware('can:categories');
+    }
+    
     /**
      * Display a listing of the resource.
      *

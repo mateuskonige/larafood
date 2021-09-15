@@ -22,7 +22,7 @@
                 <ul>
                     <li><strong>Nome: </strong>{{ $user->name }}</li>
                     <li> <strong>E-mail</strong>{{ $user->email }}</li>
-                    <li><strong>Empresa: </strong>{{ $user->tenants->name }}</li>
+                    <li><strong>Empresa: </strong>{{ $user->tenant->name }}</li>
                 </ul>
             </div>
 

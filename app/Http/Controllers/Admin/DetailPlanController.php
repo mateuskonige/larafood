@@ -10,6 +10,10 @@ use App\Http\Requests\StoreUpdateDetailPlan;
 
 class DetailPlanController extends Controller
 {
+    // public function __construct(DetailPlan $detailPlan){
+    //     $this->middleware('can:detailPlans');
+    // }
+    
     public function index($urlPlan)
     {
         if (!$plan = Plan::where('url', $urlPlan)->first()) {

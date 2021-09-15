@@ -9,6 +9,10 @@ use App\Http\Requests\StoreUpdateTable;
 
 class TableController extends Controller
 {
+    public function __construct(Table $table){
+        $this->middleware('can:tables');
+    }
+    
     /**
      * Display a listing of the resource.
      *
