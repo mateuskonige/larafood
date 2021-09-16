@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Admin\TenantController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ACL\RuleController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DetailPlanController;
 use Symfony\Component\Routing\Route as RoutingRoute;
@@ -14,6 +15,7 @@ use App\Http\Controllers\Admin\ACL\ProfileController;
 use App\Http\Controllers\Admin\ACL\PermissionController;
 use App\Http\Controllers\Admin\ACL\PlanProfileController;
 use App\Http\Controllers\Admin\CategoryProductController;
+use App\Http\Controllers\Admin\ACL\RulePermissionController;
 use App\Http\Controllers\Admin\ACL\ProfilePermissionController;
 
 /*
@@ -44,6 +46,21 @@ Route::prefix('admin')->middleware('auth')->group(function() {
      */
     Route::any('/profiles/search', [ProfileController::class, 'search'])->name('profiles.search');
     Route::resource('/profiles', ProfileController::class);
+
+    /**
+     * Rotas para CARGOS
+     */
+    Route::any('/rules/search', [RuleController::class, 'search'])->name('rules.search');
+    Route::resource('/rules', RuleController::class);
+    
+    /**
+     * cargo x Permissão
+     */
+    Route::get('rules/{id}/permissions', [RulePermissionController::class, 'permissions'])->name('rules.permissions');
+    Route::get('permissions/{id}/rules', [RulePermissionController::class, 'rules'])->name('permissions.rules');
+    Route::any('rules/{id}/permissions/create', [RulePermissionController::class, 'permissionsAvailable'])->name('rules.permissions.available');
+    Route::get('rules/{id}/permissions/{idPermission}/detach', [RulePermissionController::class, 'detachPermissionsAvailable'])->name('rules.permissions.detach');
+    Route::post('rules/{id}/permissions', [RulePermissionController::class, 'attachPermissionsRule'])->name('rules.permissions.attach');
 
     /**
      * Rotas para usuários

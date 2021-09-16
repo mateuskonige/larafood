@@ -253,6 +253,12 @@ return [
             'can'  => 'permissions',
         ],
         [
+            'text' => 'Cargos',
+            'url'  => 'admin/rules',
+            'icon' => 'fa fa-check',
+            'can'  => 'rules',
+        ],
+        [
             'text' => 'Usuários',
             'url'  => 'admin/users',
             'icon' => 'fa fa-users',
