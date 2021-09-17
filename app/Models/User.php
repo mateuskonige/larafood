@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Rule;
 use App\Models\Tenant;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Traits\UserACLTrait;
@@ -58,5 +59,12 @@ class User extends Authenticatable
 
     public function tenant() {
         return $this->belongsTo(Tenant::class);
+    }
+        
+    /**
+     * Get roles
+     */
+    public function rules() {
+        return $this->belongsToMany(Rule::class);
     }
 }

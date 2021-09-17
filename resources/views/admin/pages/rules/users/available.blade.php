@@ -1,27 +1,27 @@
 @extends('adminlte::page')
 
-@section('title', 'Regras')
+@section('title', "Usuários disponíveis para o cargo $rule->name")
 
 @section('content_header')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Dashboard</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Regras</a></li>
+          <li class="breadcrumb-item"><a href="{{ route('rules.index') }}">Cargos</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Usuários</a></li>
         </ol>
     </nav>
 
     <br>
 
     <div class="d-flex justify-content-between">
-        <h1>Gestão de regras</h1>
-        <a href="{{ route('rules.create') }}" class="btn btn-dark"><i class="fa fa-plus"></i> Adicionar</a>
+        <h1>Usuários disponíveis para o cargo <b>{{ $rule->name }}</b></h1>
     </div>
 @stop
 
 @section('content')
     <div class="card">
         <div class="card-header">
-            <form action="{{ route('rules.search') }}" method="POST" class="form form-inline">
+            <form action="{{ route('rules.users.available', $rule->id) }}" method="POST" class="form form-inline">
                 @csrf
             
                 <div class="form-group">
@@ -34,30 +34,37 @@
             <table class="table table-condensed">
                 <thead>
                     <tr>
+                        <th width="50px">#</th>
                         <th>Nome</th>
-                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($rules as $rule)
+                    <form action="{{ route('rules.users.attach', $rule->id) }}" method="POST">
+                        @csrf
+                        
+                        @include('admin.includes.alert')
+
+                        @foreach ($users as $user)
+                            <tr>
+                                <td><input type="checkbox" name="users[]" value="{{ $user->id }}"></td>
+                                <td>{{ $user->name }}</td>
+                            </tr>
+                        @endforeach  
+                        
                         <tr>
-                            <td>{{ $rule->name }}</td>
-                            <td width="250px">
-                                <a href="{{ route('rules.users', $rule->id) }}" class="btn btn-outline-info"><i class="fa fa-user"></i></a>
-                                <a href="{{ route('rules.permissions', $rule->id) }}" class="btn btn-outline-warning"><i class="fa fa-lock"></i></a>
-                                <a href="{{ route('rules.show', $rule->id) }}" class="btn btn-outline-primary">Ver</a>
-                                <a href="{{ route('rules.edit', $rule->id) }}" class="btn btn-dark">Editar</a>
+                            <td>
+                                <button type="submit" class="btn btn-success">Vincular</button>
                             </td>
                         </tr>
-                    @endforeach    
+                    </form>
                 </tbody>
             </table>
         </div>
         <div class="card-footer">
             @if (isset($filters))
-                {!! $rules->appends($filters)->links() !!}
+                {!! $users->appends($filters)->links() !!}
             @else
-                {!! $rules->links() !!}
+                {!! $users->links() !!}
             @endif
         </div>
     </div>

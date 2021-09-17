@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DetailPlanController;
 use Symfony\Component\Routing\Route as RoutingRoute;
 use App\Http\Controllers\Admin\ACL\ProfileController;
+use App\Http\Controllers\Admin\ACL\RuleUserController;
 use App\Http\Controllers\Admin\ACL\PermissionController;
 use App\Http\Controllers\Admin\ACL\PlanProfileController;
 use App\Http\Controllers\Admin\CategoryProductController;
@@ -61,6 +62,15 @@ Route::prefix('admin')->middleware('auth')->group(function() {
     Route::any('rules/{id}/permissions/create', [RulePermissionController::class, 'permissionsAvailable'])->name('rules.permissions.available');
     Route::get('rules/{id}/permissions/{idPermission}/detach', [RulePermissionController::class, 'detachPermissionsAvailable'])->name('rules.permissions.detach');
     Route::post('rules/{id}/permissions', [RulePermissionController::class, 'attachPermissionsRule'])->name('rules.permissions.attach');
+
+    /**
+     * cargo x user
+     */
+    Route::get('rules/{id}/users', [RuleUserController::class, 'users'])->name('rules.users');
+    Route::get('users/{id}/rules', [RuleUserController::class, 'rules'])->name('users.rules');
+    Route::any('rules/{id}/users/create', [RuleUserController::class, 'usersAvailable'])->name('rules.users.available');
+    Route::get('rules/{id}/users/{idUser}/detach', [RuleUserController::class, 'detachUsersAvailable'])->name('rules.users.detach');
+    Route::post('rules/{id}/users', [RuleUserController::class, 'attachUsersRule'])->name('rules.users.attach');
 
     /**
      * Rotas para usuários
