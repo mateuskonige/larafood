@@ -10,9 +10,9 @@ trait UserACLTrait {
         $permissionsRule = $this->permissionsRule();
 
         $permissions = [];
-        foreach ($permissionsRule as $permissionRule) {
-            if(in_array($permissionRule, $permissionsPlan)){
-                array_push($permissions);
+        foreach ($permissionsRule as $permission) {
+            if(in_array($permission, $permissionsPlan)){
+                array_push($permissions, $permission);
             }
         }
 
@@ -36,13 +36,15 @@ trait UserACLTrait {
         return $permissions;
     }
 
-    public function permissionsRole(): array {
+    public function permissionsRule(): array {
         $rules = $this->rules()->with('permissions')->get();
 
-        $permissions = [];        
-        foreach ($rules->permissions as $permission) {
-            array_push($permissions, $permission->name);
-        }        
+        $permissions = [];
+        foreach ($rules as $rule) {
+            foreach ($rule->permissions as $permission) {
+                array_push($permissions, $permission->name);
+            }        
+        }       
 
         return $permissions;
     }

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Services\TenantService;
 use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
+use App\Events\TenantCreated;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -75,6 +76,8 @@ class RegisterController extends Controller
 
         $user = $tenantService->make($plan, $data);
         
+        event(new TenantCreated($user));
+
         return $user;
     }
 }
