@@ -16,7 +16,10 @@ class TenantApiController extends Controller
     }
 
     public function index() {
-        $tenants = Tenant::all();
-        return TenantResource::collection($tenants);
+        return TenantResource::collection(Tenant::all());
+    }
+
+    public function show($uuid) {   
+        return new TenantResource(Tenant::where('uuid', $uuid)->first());
     }
 }

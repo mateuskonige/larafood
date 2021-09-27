@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Api\TenantApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\TenantApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/tenants', [TenantApiController::class, 'index']);
+Route::get('/tenants/{uuid}', [TenantApiController::class, 'show']);
