@@ -16,10 +16,13 @@ class TenantApiController extends Controller
     }
 
     public function index() {
-        return TenantResource::collection(Tenant::all());
+        return TenantResource::collection(Tenant::paginate());
     }
 
     public function show($uuid) {   
-        return new TenantResource(Tenant::where('uuid', $uuid)->first());
+        if(!$tenant = Tenant::where('uuid', $uuid)->first()){
+            return response()->json(['message' => 'Tenant not found'], 404);
+        }
+        return new TenantResource($tenant);
     }
 }
