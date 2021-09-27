@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Plan;
 use App\Models\User;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -31,5 +32,9 @@ class Tenant extends Model
 
     public function plan() {
         return $this->belongsTo(Plan::class);
+    }
+
+    public function categories() {
+        return $this->hasMany(Category::class);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Tenant;
 use App\Models\Product;
 use App\Tenant\Traits\TenantTrait;
 use Illuminate\Database\Eloquent\Model;
@@ -21,5 +22,9 @@ class Category extends Model
     public function products()
     {
         return $this->belongsToMany(Product::class);
+    }
+
+    public function tenant() {
+        return $this->belongsTo(Tenant::class);
     }
 }

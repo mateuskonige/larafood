@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\TenantApiController;
+use App\Http\Controllers\Api\CategoryApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/tenants', [TenantApiController::class, 'index']);
 Route::get('/tenants/{uuid}', [TenantApiController::class, 'show']);
+
+Route::get('/categories/{uuid}', [CategoryApiController::class, 'categoriesbyTenant']);
