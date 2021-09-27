@@ -24,3 +24,4 @@ Route::get('/tenants', [TenantApiController::class, 'index']);
 Route::get('/tenants/{uuid}', [TenantApiController::class, 'show']);
 
 Route::get('/categories/{uuid}', [CategoryApiController::class, 'categoriesbyTenant']);
+Route::get('/categories/{uuid}/{url}', [CategoryApiController::class, 'categoriesbyTenantShow']);

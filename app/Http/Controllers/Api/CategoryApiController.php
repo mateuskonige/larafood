@@ -20,4 +20,17 @@ class CategoryApiController extends Controller
 
         return CategoryResource::collection($categories);
     }
+
+    public function categoriesbyTenantShow($uuid, $url) {        
+
+        $categories = DB::table('categories')
+            ->join('tenants', 'tenants.id', '=', 'categories.tenant_id')
+            ->where('tenants.uuid', $uuid)
+            ->select('categories.*')
+            ->get();
+        
+        $categorie = $categories->where('url', $url)->first();
+    
+        return new CategoryResource($categorie);
+    }    
 }
