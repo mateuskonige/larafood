@@ -2,35 +2,39 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Category;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\TenantFormRequest;
 use App\Http\Resources\CategoryResource;
-use Illuminate\Support\Facades\DB;
+use App\Services\CategoryService;
+use Illuminate\Http\Request;
 
 class CategoryApiController extends Controller
 {
-    public function categoriesbyTenant($uuid) {        
+    protected $categoryService;
 
-        $categories = DB::table('categories')
-            ->join('tenants', 'tenants.id', '=', 'categories.tenant_id')
-            ->where('tenants.uuid', $uuid)
-            ->select('categories.*')
-            ->get();
+    public function __construct(CategoryService $categoryService)
+    {
+        $this->categoryService = $categoryService;
+    }
+
+    public function categoriesByTenant(TenantFormRequest $request)
+    {
+        // if (!$request->token_company) {
+        //     return response()->json(['message' => 'Token Not Found'], 404);
+        // }
+
+        $categories = $this->categoryService->getCategoriesByUuid($request->token_company);
 
         return CategoryResource::collection($categories);
     }
 
-    public function categoriesbyTenantShow($uuid, $url) {        
 
-        $categories = DB::table('categories')
-            ->join('tenants', 'tenants.id', '=', 'categories.tenant_id')
-            ->where('tenants.uuid', $uuid)
-            ->select('categories.*')
-            ->get();
-        
-        $categorie = $categories->where('url', $url)->first();
-    
-        return new CategoryResource($categorie);
-    }    
+    public function show(TenantFormRequest $request, $url)
+    {
+        if (!$category = $this->categoryService->getCategoryByUrl($url)) {
+            return response()->json(['message' => 'Category Not Found'], 404);
+        }
+
+        return new CategoryResource($category);
+    }
 }

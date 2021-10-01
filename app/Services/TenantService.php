@@ -4,33 +4,41 @@ namespace App\Services;
 
 use App\Models\Plan;
 use App\Repositories\Contracts\TenantRepositoryInterface;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
 
-class TenantService {
-
+class TenantService
+{
     private $plan, $data = [];
     private $repository;
 
-    public function __contruct(TenantRepositoryInterface $repository) {
+    public function __construct(TenantRepositoryInterface $repository)
+    {
         $this->repository = $repository;
     }
 
-    public function getaAllTenants(){
-        return $this->repository->getAllTenants();
+    public function getAllTenants(int $per_page)
+    {
+        return $this->repository->getAllTenants($per_page);
     }
 
-    public function make(Plan $plan, array $data) {
+    public function getTenantByUuid(string $uuid)
+    {
+        return $this->repository->getTenantByUuid($uuid);
+    }
+
+    public function make(Plan $plan, array $data)
+    {
         $this->plan = $plan;
         $this->data = $data;
 
         $tenant = $this->storeTenant();
+
         $user = $this->storeUser($tenant);
 
         return $user;
     }
 
-    public function storeTenant() {
+    public function storeTenant()
+    {
         $data = $this->data;
 
         return $this->plan->tenants()->create([
@@ -43,12 +51,12 @@ class TenantService {
         ]);
     }
 
-    public function storeUser($tenant) {
-
+    public function storeUser($tenant)
+    {
         $user = $tenant->users()->create([
             'name' => $this->data['name'],
             'email' => $this->data['email'],
-            'password' => Hash::make($this->data['password']),
+            'password' => bcrypt($this->data['password']),
         ]);
 
         return $user;
